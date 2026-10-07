@@ -38,12 +38,12 @@ export function Nav() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-40 w-full">
-      <div
-        className={`mx-auto flex max-w-6xl items-center justify-between px-4 transition-all duration-300 ${
-          scrolled ? "mt-2" : "mt-4"
-        }`}
-      >
+    <header
+      className={`sticky top-0 z-40 w-full transition-all duration-300 ${
+        scrolled ? "pt-3" : "pt-4"
+      }`}
+    >
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4">
         <div
           className={`flex w-full items-center justify-between rounded-full border px-3 py-2 transition-all duration-300 ${
             scrolled
