@@ -76,8 +76,8 @@ function PrivacyPage() {
           Depending on where you live (for example under the GDPR or CCPA), you may have the
           right to access, correct, export or delete your personal data, and to withdraw
           consent at any time. To exercise any of these rights, email{" "}
-          <a href="mailto:hello@brandlux.com" className="font-medium text-primary hover:underline">
-            hello@brandlux.com
+          <a href="mailto:hello@getbrandlux.com" className="font-medium text-primary hover:underline">
+            hello@getbrandlux.com
           </a>{" "}
           and we will respond within 30 days. Every marketing email we send will also
           include an unsubscribe link.
@@ -110,8 +110,8 @@ function PrivacyPage() {
       <LegalSection title="9. Contact">
         <p>
           Questions about this policy or your data? Email{" "}
-          <a href="mailto:hello@brandlux.com" className="font-medium text-primary hover:underline">
-            hello@brandlux.com
+          <a href="mailto:hello@getbrandlux.com" className="font-medium text-primary hover:underline">
+            hello@getbrandlux.com
           </a>
           .
         </p>

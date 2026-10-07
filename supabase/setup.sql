@@ -40,3 +40,50 @@ WITH CHECK (
   AND char_length(email) BETWEEN 3 AND 255
   AND email ~* '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$'
 );
+
+-- ---------------------------------------------------------------------------
+-- EMAIL NOTIFICATIONS + AUTO-REPLIES
+-- Fires supabase/functions/form-notify on every form submission.
+-- Before running this block, replace REPLACE_WEBHOOK_SECRET below with the same
+-- long random string you save as the WEBHOOK_SECRET edge-function secret:
+--   npx supabase secrets set WEBHOOK_SECRET=<same-string> RESEND_API_KEY=<key>
+-- Safe to run before the function exists: a failed pg_net call does not affect
+-- the insert. Inspect outcomes with:
+--   select id, status_code, error_msg, created from net._http_response order by created desc;
+-- ---------------------------------------------------------------------------
+
+create extension if not exists pg_net;
+
+create or replace function public.notify_form_emails()
+returns trigger
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  perform net.http_post(
+    url     := 'https://zupjwqtzhckpfguhzqnq.supabase.co/functions/v1/form-notify',
+    headers := jsonb_build_object(
+      'Content-Type',  'application/json',
+      'Authorization', 'Bearer REPLACE_WEBHOOK_SECRET'
+    ),
+    body    := jsonb_build_object(
+      'table',     TG_TABLE_NAME,
+      'schema',    TG_TABLE_SCHEMA,
+      'operation', TG_OP,
+      'record',    to_jsonb(NEW)
+    ),
+    timeout_milliseconds := 10000
+  );
+  return new;
+end $$;
+
+drop trigger if exists wishlist_signup_email on public.wishlist_signups;
+create trigger wishlist_signup_email
+  after insert on public.wishlist_signups
+  for each row execute function public.notify_form_emails();
+
+drop trigger if exists contact_message_email on public.contact_messages;
+create trigger contact_message_email
+  after insert on public.contact_messages
+  for each row execute function public.notify_form_emails();

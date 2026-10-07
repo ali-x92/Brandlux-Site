@@ -44,10 +44,10 @@ export function Footer() {
               <p className="mt-5 text-sm text-muted-foreground">
                 Questions?{" "}
                 <a
-                  href="mailto:hello@brandlux.com"
+                  href="mailto:hello@getbrandlux.com"
                   className="font-medium text-foreground transition-colors hover:text-primary"
                 >
-                  hello@brandlux.com
+                  hello@getbrandlux.com
                 </a>
               </p>
             </div>

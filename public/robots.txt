@@ -3,4 +3,4 @@ Allow: /
 Disallow: /privacy
 Disallow: /terms
 
-Sitemap: https://brandlux.com/sitemap.xml
+Sitemap: https://getbrandlux.com/sitemap.xml

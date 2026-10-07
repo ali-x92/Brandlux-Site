@@ -85,6 +85,8 @@ export function Nav() {
               type="button"
               onClick={() => setOpen((v) => !v)}
               aria-label="Toggle menu"
+              aria-expanded={open}
+              aria-controls="mobile-menu"
               className="rounded-full p-2 text-foreground/80 hover:bg-muted lg:hidden"
             >
               {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -94,7 +96,7 @@ export function Nav() {
       </div>
 
       {open && (
-        <div className="mx-auto mt-2 max-w-6xl px-4 lg:hidden">
+        <div id="mobile-menu" className="mx-auto mt-2 max-w-6xl px-4 lg:hidden">
           <div className="glass flex flex-col gap-1 rounded-3xl p-3">
             <Link
               to="/tools"

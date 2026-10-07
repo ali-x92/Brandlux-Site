@@ -50,7 +50,7 @@ export function Contact() {
       toast.success("Message sent — we'll get back to you soon.");
     } catch (err) {
       console.error("contact submit", err);
-      toast.error("Something went wrong. Please try again or email hello@brandlux.com.");
+      toast.error("Something went wrong. Please try again or email hello@getbrandlux.com.");
     } finally {
       setLoading(false);
     }
@@ -114,10 +114,10 @@ export function Contact() {
                       <div>
                         <div className="text-xs text-muted-foreground">Email</div>
                         <a
-                          href="mailto:hello@brandlux.com"
+                          href="mailto:hello@getbrandlux.com"
                           className="text-sm font-medium transition-colors hover:text-primary"
                         >
-                          hello@brandlux.com
+                          hello@getbrandlux.com
                         </a>
                       </div>
                     </div>

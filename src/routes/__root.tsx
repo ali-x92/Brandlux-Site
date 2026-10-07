@@ -2,7 +2,7 @@ import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/r
 
 import appCss from "../styles.css?url";
 
-const SITE_URL = "https://brandlux.com";
+const SITE_URL = "https://getbrandlux.com";
 
 function NotFoundComponent() {
   return (

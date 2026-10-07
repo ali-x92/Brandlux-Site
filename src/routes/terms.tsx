@@ -104,8 +104,8 @@ function TermsPage() {
       <LegalSection title="10. Contact">
         <p>
           Questions about these terms? Email{" "}
-          <a href="mailto:hello@brandlux.com" className="font-medium text-primary hover:underline">
-            hello@brandlux.com
+          <a href="mailto:hello@getbrandlux.com" className="font-medium text-primary hover:underline">
+            hello@getbrandlux.com
           </a>
           .
         </p>

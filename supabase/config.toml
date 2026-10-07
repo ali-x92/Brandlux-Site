@@ -1,1 +1,6 @@
-project_id = "ktvaqdqhfcjmjrdhwuhm"
+project_id = "zupjwqtzhckpfguhzqnq"
+
+# The form webhook posts a shared secret in Authorization, not a Supabase JWT,
+# so the runtime must not try to parse it as one. Access is checked inside the function.
+[functions.form-notify]
+verify_jwt = false
