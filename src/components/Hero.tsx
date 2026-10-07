@@ -1,22 +1,15 @@
 import { Sparkles } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
-import { Parallax } from "@/components/Parallax";
 import { WishlistForm } from "@/components/WishlistForm";
 
 export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
-      {/* Floating glow blobs with scroll parallax depth */}
+      {/* Static glow wash — no drift, so the corners read as flat colour */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <Parallax speed={0.45}>
-          <div className="absolute -left-24 top-10 h-80 w-80 rounded-full bg-primary/30 blur-3xl animate-float-slow" />
-        </Parallax>
-        <Parallax speed={-0.35}>
-          <div className="absolute -right-20 top-32 h-96 w-96 rounded-full bg-secondary/30 blur-3xl animate-float-slower" />
-        </Parallax>
-        <Parallax speed={0.25}>
-          <div className="absolute left-1/2 top-72 h-72 w-72 -translate-x-1/2 rounded-full bg-accent/25 blur-3xl animate-float-slow" />
-        </Parallax>
+        <div className="absolute -left-24 top-10 h-80 w-80 rounded-full bg-primary/30 blur-3xl" />
+        <div className="absolute -right-20 top-32 h-96 w-96 rounded-full bg-secondary/30 blur-3xl" />
+        <div className="absolute left-1/2 top-72 h-72 w-72 -translate-x-1/2 rounded-full bg-accent/25 blur-3xl" />
       </div>
 
 
