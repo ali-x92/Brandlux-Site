@@ -60,6 +60,33 @@ export const Route = createRootRoute({
           href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap",
         },
       ],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "Organization",
+                "@id": `${SITE_URL}/#organization`,
+                name: "BrandLux",
+                url: SITE_URL,
+                logo: `${SITE_URL}/favicon.png`,
+                email: "hello@getbrandlux.com",
+                slogan: "Your Brand, Radiant.",
+              },
+              {
+                "@type": "WebSite",
+                "@id": `${SITE_URL}/#website`,
+                url: SITE_URL,
+                name: "BrandLux",
+                inLanguage: "en",
+                publisher: { "@id": `${SITE_URL}/#organization` },
+              },
+            ],
+          }),
+        },
+      ],
     };
   },
   shellComponent: RootShell,

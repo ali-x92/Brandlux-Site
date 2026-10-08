@@ -111,30 +111,34 @@ export function UseCases() {
               </div>
             </div>
 
-            <div className="mt-6 flex items-center justify-center gap-4">
+            <div className="mt-6 flex items-center justify-center gap-2">
               <button
                 aria-label="Previous use case"
                 onClick={() => go(-1)}
-                className="glass flex h-10 w-10 items-center justify-center rounded-full transition-transform hover:scale-110"
+                className="glass flex h-11 w-11 shrink-0 items-center justify-center rounded-full transition-transform hover:scale-110"
               >
                 <ChevronLeft className="h-4 w-4" />
               </button>
-              <div className="flex gap-2">
+              <div className="flex">
                 {slides.map((s, idx) => (
                   <button
                     key={s.tag}
                     aria-label={`Go to ${s.tag}`}
                     onClick={() => setI(idx)}
-                    className={`h-1.5 rounded-full transition-all ${
-                      idx === i ? "w-8 bg-gradient-brand" : "w-3 bg-border"
-                    }`}
-                  />
+                    className="flex h-11 w-9 items-center justify-center"
+                  >
+                    <span
+                      className={`h-1.5 rounded-full transition-all ${
+                        idx === i ? "w-8 bg-gradient-brand" : "w-3 bg-border"
+                      }`}
+                    />
+                  </button>
                 ))}
               </div>
               <button
                 aria-label="Next use case"
                 onClick={() => go(1)}
-                className="glass flex h-10 w-10 items-center justify-center rounded-full transition-transform hover:scale-110"
+                className="glass flex h-11 w-11 shrink-0 items-center justify-center rounded-full transition-transform hover:scale-110"
               >
                 <ChevronRight className="h-4 w-4" />
               </button>

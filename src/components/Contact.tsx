@@ -115,7 +115,7 @@ export function Contact() {
                         <div className="text-xs text-muted-foreground">Email</div>
                         <a
                           href="mailto:hello@getbrandlux.com"
-                          className="text-sm font-medium transition-colors hover:text-primary"
+                          className="inline-flex min-h-6 items-center text-sm font-medium transition-colors hover:text-primary"
                         >
                           hello@getbrandlux.com
                         </a>

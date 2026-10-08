@@ -13,7 +13,7 @@ import { Comparison } from "@/components/Comparison";
 import { HowItWorks } from "@/components/HowItWorks";
 import { About } from "@/components/About";
 import { Pricing } from "@/components/Pricing";
-import { Faq } from "@/components/Faq";
+import { Faq, faqs } from "@/components/Faq";
 import { Contact } from "@/components/Contact";
 import { CtaSection } from "@/components/CtaSection";
 import { Footer } from "@/components/Footer";
@@ -34,6 +34,20 @@ export const Route = createFileRoute("/")({
         property: "og:description",
         content:
           "One workspace. A complete, consistent brand identity. Join the BrandLux wishlist for early access.",
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqs.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        }),
       },
     ],
   }),

@@ -24,7 +24,7 @@ const columns: { title: string; links: FooterLink[] }[] = [
 ];
 
 const linkClass =
-  "text-sm text-muted-foreground transition-colors hover:text-foreground";
+  "inline-flex min-h-6 items-center text-sm text-muted-foreground transition-colors hover:text-foreground";
 
 export function Footer() {
   const { pathname } = useLocation();
@@ -81,11 +81,17 @@ export function Footer() {
             <p className="text-xs text-muted-foreground">
               © {new Date().getFullYear()} BrandLux. All rights reserved.
             </p>
-            <div className="flex items-center gap-5 text-xs text-muted-foreground">
-              <Link to="/privacy" className="transition-colors hover:text-foreground">
+            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-xs text-muted-foreground sm:justify-end">
+              <Link
+                to="/privacy"
+                className="inline-flex min-h-6 items-center transition-colors hover:text-foreground"
+              >
                 Privacy Policy
               </Link>
-              <Link to="/terms" className="transition-colors hover:text-foreground">
+              <Link
+                to="/terms"
+                className="inline-flex min-h-6 items-center transition-colors hover:text-foreground"
+              >
                 Terms of Service
               </Link>
             </div>

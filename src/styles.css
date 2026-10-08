@@ -85,13 +85,6 @@
     #fffbf3 0%,
     #f6edf6 100%
   );
-  --gradient-hero: radial-gradient(
-      circle at 15% 20%,
-      rgb(131 58 240 / 40%) 0%,
-      transparent 55%
-    ),
-    radial-gradient(circle at 85% 25%, rgb(221 71 214 / 40%) 0%, transparent 55%),
-    radial-gradient(circle at 55% 100%, rgb(255 117 39 / 38%) 0%, transparent 60%);
 
   --shadow-glass: 0 10px 40px -10px rgb(76 35 133 / 20%),
     0 2px 6px -2px rgb(76 35 133 / 12%);
@@ -151,10 +144,6 @@
 
   .bg-gradient-brand {
     background: var(--gradient-brand);
-  }
-
-  .bg-hero-glow {
-    background: var(--gradient-hero);
   }
 
   .reveal {

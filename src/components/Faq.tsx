@@ -6,7 +6,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const faqs = [
+// Shared with the index route's FAQPage JSON-LD so the markup can't drift from what's rendered.
+export const faqs = [
   {
     q: "What exactly is BrandLux?",
     a: "BrandLux is an AI brand studio. Each project holds one brand — its logo, palette, type and voice — and 16 tools build from that kit: website, print, packaging, social content and marketing copy.",

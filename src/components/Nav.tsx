@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { BrandWordmark } from "@/components/BrandMark";
@@ -22,11 +22,12 @@ const itemClass = (active: boolean) =>
   );
 
 const mobileItemClass =
-  "rounded-2xl px-4 py-2.5 text-sm text-foreground/80 hover:bg-muted";
+  "rounded-2xl px-4 py-3 text-sm text-foreground/80 hover:bg-muted";
 
 export function Nav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const toggleRef = useRef<HTMLButtonElement>(null);
   const { pathname } = useLocation();
   const isHome = pathname === "/";
 
@@ -36,6 +37,17 @@ export function Nav() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      setOpen(false);
+      toggleRef.current?.focus();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [open]);
 
   return (
     <header
@@ -82,12 +94,13 @@ export function Nav() {
               Join wishlist
             </a>
             <button
+              ref={toggleRef}
               type="button"
               onClick={() => setOpen((v) => !v)}
               aria-label="Toggle menu"
               aria-expanded={open}
               aria-controls="mobile-menu"
-              className="rounded-full p-2 text-foreground/80 hover:bg-muted lg:hidden"
+              className="grid size-11 place-items-center rounded-full text-foreground/80 hover:bg-muted lg:hidden"
             >
               {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -118,7 +131,7 @@ export function Nav() {
             <a
               href={isHome ? "#wishlist" : "/#wishlist"}
               onClick={() => setOpen(false)}
-              className="mt-1 rounded-2xl bg-gradient-brand px-4 py-2.5 text-center text-sm font-semibold text-white"
+              className="mt-1 rounded-2xl bg-gradient-brand px-4 py-3 text-center text-sm font-semibold text-white"
             >
               Join wishlist
             </a>
