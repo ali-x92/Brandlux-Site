@@ -104,7 +104,7 @@ const BULLET = (t: string) =>
   `<tr><td style="padding:6px 0 6px 14px;font-size:15px;line-height:1.6;color:${MUTED}">&bull;&nbsp;${t}</td></tr>`;
 
 Deno.serve(async (req) => {
-  const payload = await req.json().catch(() => null) as WebhookPayload | null;
+  const payload = (await req.json().catch(() => null)) as WebhookPayload | null;
   if (!payload || (payload.operation ?? payload.type) !== "INSERT" || !payload.record) {
     return new Response("ignored", { status: 200 });
   }
@@ -121,7 +121,9 @@ Deno.serve(async (req) => {
 
   const raw = payload.record;
   const r = (typeof raw === "string" ? JSON.parse(raw) : raw) as Record<string, unknown>;
-  const table = String(payload.table ?? "").split(".").pop();
+  const table = String(payload.table ?? "")
+    .split(".")
+    .pop();
   const email = String(r.email ?? "").toLowerCase();
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return new Response("bad email", { status: 200 });
 
@@ -150,7 +152,7 @@ Deno.serve(async (req) => {
             ${BULLET("Direct input on which tools we ship next")}
           </table>
           <tr><td style="padding-top:22px;font-size:15px;line-height:1.7;color:${MUTED}">
-            While you're here — BrandLux is one AI workspace with 16 tools reading from a
+            While you're here — BrandLux is one AI workspace where every tool reads from a
             single brand kit, so your logo, website, print, packaging, social content and
             marketing copy all match without you babysitting them.
           </td></tr>
@@ -165,7 +167,7 @@ Being on the list means you start ahead of everyone else:
   - Free credits to spend on your first brand kit
   - Direct input on which tools we ship next
 
-BrandLux is one AI workspace with 16 tools reading from a single brand kit, so your
+BrandLux is one AI workspace where every tool reads from a single brand kit, so your
 logo, website, print, packaging, social content and marketing copy all match without
 you babysitting them.
 
