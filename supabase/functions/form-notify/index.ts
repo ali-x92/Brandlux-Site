@@ -13,12 +13,21 @@ interface EmailRequest {
   from: string;
   to: string;
   subject: string;
-  html: string;
+  preheader: string;
+  heading: string;
+  body: string;
+  text: string;
   reply_to?: string;
 }
 
 const SITE = "https://getbrandlux.com";
 const OWNER_EMAIL = "hello@getbrandlux.com";
+
+// Brand palette from src/styles.css — ink #1C172B, purple #833AF0, cream #FFFBF3.
+const INK = "#1c172b";
+const PURPLE = "#833af0";
+const MUTED = "#5d5673";
+const CREAM = "#fffbf3";
 
 function esc(value: unknown): string {
   const s = String(value ?? "");
@@ -29,18 +38,49 @@ function esc(value: unknown): string {
     .replace(/"/g, "&quot;");
 }
 
-function shell(heading: string, body: string): string {
-  return `<!doctype html><html><body style="margin:0;background:#fffbf3;padding:32px 16px;font-family:'Plus Jakarta Sans',Segoe UI,Helvetica,Arial,sans-serif;color:#3b3450">
-  <table width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">
-    <table width="560" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:20px;padding:36px 32px;max-width:560px">
-      <tr><td style="font-size:20px;font-weight:800;color:#833af0;letter-spacing:-0.3px">BrandLux</td></tr>
-      <tr><td style="padding-top:18px;font-size:19px;font-weight:700;line-height:1.35">${esc(heading)}</td></tr>
-      <tr><td style="padding-top:12px;font-size:15px;line-height:1.65;color:#5d5673">${body}</td></tr>
-      <tr><td style="padding-top:28px;font-size:12px;color:#9a93ad;border-top:1px solid #efeaf4">
-        <a href="${SITE}" style="color:#833af0;text-decoration:none">${SITE.replace("https://", "")}</a>
+function button(label: string, href: string): string {
+  return `<tr><td style="padding-top:26px">
+    <a href="${href}" style="display:inline-block;background:${PURPLE};color:#ffffff;font-size:15px;font-weight:700;text-decoration:none;padding:13px 26px;border-radius:9999px">${esc(label)}</a>
+  </td></tr>`;
+}
+
+function quote(text: unknown): string {
+  return `<tr><td style="padding-top:18px">
+    <div style="padding:14px 16px;background:#f8f4fb;border-left:3px solid ${PURPLE};border-radius:0 10px 10px 0;font-size:14px;line-height:1.6;color:${INK};white-space:pre-wrap">${esc(text)}</div>
+  </td></tr>`;
+}
+
+/** Renders the whole message. Text-only clients get `text`, so keep both in sync. */
+function render(msg: EmailRequest): string {
+  return `<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(msg.subject)}</title></head>
+<body style="margin:0;background:${CREAM};padding:34px 16px;font-family:'Plus Jakarta Sans',Segoe UI,Helvetica,Arial,sans-serif;color:${INK}">
+  <div style="display:none;max-height:0;overflow:hidden;opacity:0">${esc(msg.preheader)}</div>
+  <table width="100%" cellpadding="0" cellspacing="0" role="presentation"><tr><td align="center">
+    <table width="560" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;max-width:560px;background:#ffffff;border-radius:22px;overflow:hidden;box-shadow:0 12px 40px rgba(28,23,43,.07)">
+      <tr><td style="height:4px;background:linear-gradient(120deg,#833af0 0%,#dd47d6 35%,#ec009c 65%,#ff7527 100%);background-color:${PURPLE}"></td></tr>
+      <tr><td style="padding:30px 34px 34px">
+        <table cellpadding="0" cellspacing="0" role="presentation"><tr>
+          <td style="font-size:11px;font-weight:800;letter-spacing:2.4px;color:${PURPLE};text-transform:uppercase">BrandLux</td>
+        </tr></table>
+        <h1 style="margin:20px 0 0;font-size:23px;line-height:1.3;letter-spacing:-.3px;font-weight:800;color:${INK}">${esc(msg.heading)}</h1>
+        ${msg.body}
+        <table cellpadding="0" cellspacing="0" role="presentation" style="margin-top:32px;border-top:1px solid #efeaf4;padding-top:0">
+          ${buttonLine(SITE)}
+        </table>
       </td></tr>
     </table>
-  </td></tr></table></body></html>`;
+    <table cellpadding="0" cellspacing="0" role="presentation" style="max-width:560px"><tr><td style="padding:16px 8px 0;font-size:12px;line-height:1.6;color:${MUTED}">
+      You are receiving this because you left your email on the BrandLux site.<br>
+      <a href="${SITE}" style="color:${PURPLE};text-decoration:none">getbrandlux.com</a> · <a href="mailto:${OWNER_EMAIL}" style="color:${PURPLE};text-decoration:none">${OWNER_EMAIL}</a>
+    </td></tr></table>
+  </td></tr></table>
+</body></html>`;
+}
+
+function buttonLine(href: string): string {
+  return `<tr><td style="padding-top:22px;font-size:12px;color:${MUTED}">One workspace for your logo, website, print, packaging, social and copy.</td></tr>
+    <tr><td style="padding-top:6px"><a href="${href}" style="font-size:12px;color:${PURPLE};text-decoration:none;font-weight:600">${href.replace("https://", "")}</a></td></tr>`;
 }
 
 async function sendEmail(msg: EmailRequest, apiKey: string): Promise<boolean> {
@@ -51,13 +91,17 @@ async function sendEmail(msg: EmailRequest, apiKey: string): Promise<boolean> {
       from: msg.from,
       to: msg.to,
       subject: msg.subject,
-      html: msg.html,
+      html: render(msg),
+      text: msg.text,
       reply_to: msg.reply_to,
     }),
   });
   if (!res.ok) console.error("resend error", res.status, await res.text());
   return res.ok;
 }
+
+const BULLET = (t: string) =>
+  `<tr><td style="padding:6px 0 6px 14px;font-size:15px;line-height:1.6;color:${MUTED}">&bull;&nbsp;${t}</td></tr>`;
 
 Deno.serve(async (req) => {
   const payload = await req.json().catch(() => null) as WebhookPayload | null;
@@ -81,6 +125,7 @@ Deno.serve(async (req) => {
   const email = String(r.email ?? "").toLowerCase();
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return new Response("bad email", { status: 200 });
 
+  const sentAt = String(r.created_at ?? new Date().toISOString());
   const messages: EmailRequest[] = [];
 
   if (table === "wishlist_signups") {
@@ -88,20 +133,60 @@ Deno.serve(async (req) => {
       {
         from,
         to: email,
-        subject: "You're on the BrandLux wishlist",
-        html: shell(
-          "You're on the list.",
-          `Thanks for joining the BrandLux wishlist — we'll email <strong>${esc(email)}</strong> the moment early access opens.<br><br>
-           BrandLux is one AI workspace for your whole brand: logo, website, print, packaging, social content and marketing copy.<br><br>
-           <a href="${SITE}" style="color:#833af0;font-weight:700">Explore BrandLux &rarr;</a>`,
-        ),
+        subject: "You're all set — BrandLux early access",
+        preheader: "You're on the list. We'll email you the moment early access opens.",
+        heading: "You're all set.",
+        body: `<tr><td style="padding-top:14px;font-size:15px;line-height:1.7;color:${MUTED}">
+            Congratulations — you're on the BrandLux early-access list. We'll write to
+            <strong style="color:${INK}">${esc(email)}</strong> the moment the doors open,
+            no confirmation link or password needed on your side.
+          </td></tr>
+          <tr><td style="padding-top:22px;font-size:15px;line-height:1.7;color:${MUTED}">
+            Being on the list means you start ahead of everyone else:
+          </td></tr>
+          <table cellpadding="0" cellspacing="0" role="presentation" style="margin-top:8px;width:100%">
+            ${BULLET("Launch-day pricing, before it goes up")}
+            ${BULLET("Free credits to spend on your first brand kit")}
+            ${BULLET("Direct input on which tools we ship next")}
+          </table>
+          <tr><td style="padding-top:22px;font-size:15px;line-height:1.7;color:${MUTED}">
+            While you're here — BrandLux is one AI workspace with 16 tools reading from a
+            single brand kit, so your logo, website, print, packaging, social content and
+            marketing copy all match without you babysitting them.
+          </td></tr>
+          ${button("See what BrandLux makes", SITE)}`,
+        text: `You're all set.
+
+Congratulations — you're on the BrandLux early-access list. We'll email ${email}
+the moment the doors open. No confirmation link or password needed on your side.
+
+Being on the list means you start ahead of everyone else:
+  - Launch-day pricing, before it goes up
+  - Free credits to spend on your first brand kit
+  - Direct input on which tools we ship next
+
+BrandLux is one AI workspace with 16 tools reading from a single brand kit, so your
+logo, website, print, packaging, social content and marketing copy all match without
+you babysitting them.
+
+${SITE}`,
       },
       {
         from,
         to: OWNER_EMAIL,
         subject: `New wishlist signup: ${email}`,
         reply_to: email,
-        html: shell("New wishlist signup", `Email: <strong>${esc(email)}</strong><br>Source: ${esc(r.source ?? "landing")}<br>Time: ${esc(r.created_at ?? new Date().toISOString())}<br>Total signups keep accruing in the wishlist_signups table.`),
+        heading: "Someone just joined the wishlist.",
+        preheader: `New early-access signup from ${email}.`,
+        body: `<table cellpadding="0" cellspacing="0" role="presentation" style="margin-top:16px">
+            ${BULLET(`Email: <strong style="color:${INK}">${esc(email)}</strong>`)}
+            ${BULLET(`Source: ${esc(r.source ?? "landing")}`)}
+            ${BULLET(`Time: ${esc(sentAt)}`)}
+          </table>
+          <tr><td style="padding-top:20px;font-size:14px;line-height:1.7;color:${MUTED}">
+            Their auto-reply has already gone out. Reply to this email to reach them.
+          </td></tr>`,
+        text: `New wishlist signup.\n\nEmail: ${email}\nSource: ${String(r.source ?? "landing")}\nTime: ${sentAt}`,
       },
     );
   } else if (table === "contact_messages") {
@@ -109,20 +194,44 @@ Deno.serve(async (req) => {
       {
         from,
         to: email,
-        subject: "We got your message",
-        html: shell(
-          "Thanks for reaching out.",
-          `We received your message and we reply to every one — usually within 24 hours.<br><br>
-           Here's what you sent:<br><blockquote style="margin:16px 0;padding:14px 16px;background:#f8f4fb;border-left:3px solid #833af0;border-radius:0 10px 10px 0;font-size:14px">${esc(r.message)}</blockquote>
-           Need a faster answer? Reply directly to this email.`,
-        ),
+        subject: "We've got your message",
+        preheader: "Thanks for writing — a real person reads every message.",
+        heading: "Thanks — we've got it.",
+        body: `<tr><td style="padding-top:14px;font-size:15px;line-height:1.7;color:${MUTED}">
+            Your message is with us and a real person reads every one — expect a reply
+            within 24 hours.
+          </td></tr>
+          ${quote(r.message)}
+          <tr><td style="padding-top:20px;font-size:14px;line-height:1.7;color:${MUTED}">
+            Need to add something? Just reply to this email and it lands in the same thread.
+          </td></tr>`,
+        text: `Thanks — we've got it.
+
+Your message is with us and a real person reads every one. Expect a reply within 24 hours.
+
+---
+${String(r.message ?? "")}
+---
+
+Need to add something? Reply directly to this email.`,
       },
       {
         from,
         to: OWNER_EMAIL,
-        subject: `Contact form: ${r.name} (${email})`,
+        subject: `Contact form: ${String(r.name ?? email)}`,
         reply_to: email,
-        html: shell("New contact message", `Name: <strong>${esc(r.name)}</strong><br>Email: <strong>${esc(email)}</strong><br>Time: ${esc(r.created_at ?? new Date().toISOString())}<br><br><blockquote style="margin:16px 0;padding:14px 16px;background:#f8f4fb;border-left:3px solid #833af0;border-radius:0 10px 10px 0;font-size:14px">${esc(r.message)}</blockquote>Replying to this email answers them directly.`),
+        heading: "New message from the site.",
+        preheader: `${String(r.name ?? "Someone")} wrote in.`,
+        body: `<table cellpadding="0" cellspacing="0" role="presentation" style="margin-top:16px">
+            ${BULLET(`Name: <strong style="color:${INK}">${esc(r.name)}</strong>`)}
+            ${BULLET(`Email: <strong style="color:${INK}">${esc(email)}</strong>`)}
+            ${BULLET(`Time: ${esc(sentAt)}`)}
+          </table>
+          ${quote(r.message)}
+          <tr><td style="padding-top:20px;font-size:14px;line-height:1.7;color:${MUTED}">
+            Replying to this email answers them directly.
+          </td></tr>`,
+        text: `New contact message.\n\nName: ${String(r.name ?? "")}\nEmail: ${email}\nTime: ${sentAt}\n\n${String(r.message ?? "")}`,
       },
     );
   } else {

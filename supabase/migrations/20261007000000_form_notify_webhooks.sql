@@ -9,7 +9,7 @@ create or replace function public.notify_form_emails()
 returns trigger
 language plpgsql
 security definer
-set search_path = public
+set search_path = net, public
 as $$
 begin
   perform net.http_post(

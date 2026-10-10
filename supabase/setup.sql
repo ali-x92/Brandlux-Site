@@ -50,6 +50,9 @@ WITH CHECK (
 -- Safe to run before the function exists: a failed pg_net call does not affect
 -- the insert. Inspect outcomes with:
 --   select id, status_code, error_msg, created from net._http_response order by created desc;
+-- Do NOT create the `net` schema yourself — pg_net owns it, and a pre-existing
+-- empty one makes `create extension ... with schema net` fail with "not a member
+-- of extension pg_net".
 -- ---------------------------------------------------------------------------
 
 create extension if not exists pg_net;
@@ -58,7 +61,7 @@ create or replace function public.notify_form_emails()
 returns trigger
 language plpgsql
 security definer
-set search_path = public
+set search_path = net, public
 as $$
 begin
   perform net.http_post(

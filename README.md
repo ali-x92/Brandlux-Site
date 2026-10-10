@@ -54,11 +54,19 @@ registrar. Until those exist, nothing sent to `hello@` arrives anywhere.
 
 **B. Outbound mail (auto-reply + notification).** Handled by the Supabase Edge Function
 `supabase/functions/form-notify`, triggered by database webhooks on both tables — the browser forms
-are unchanged. Setup, in order:
+are unchanged.
 
-1. Create a [Resend](https://resend.com) account and verify the domain `getbrandlux.com`. Copy the
-   three DNS records it shows (MX, SPF `TXT`, DKIM `TXT`) at your registrar; they live on the `send`
-   subdomain, so they don't clash with the MX records from step A.
+> **Status: live and verified on `zupjwqtzhckpfguhzqnq` (2026-10-08).** Both paths were tested with
+> real submissions and Resend reported `delivered`. The steps below are kept as the redeploy recipe.
+> The webhook shared secret is NOT in this repo — it is in `.env.notify` (git-ignored) and in the
+> project's Edge Function secrets; they must always match.
+
+Setup, in order:
+
+1. Create a [Resend](https://resend.com) account and verify the domain `getbrandlux.com`. Resend's
+   automated setup puts a CNAME + SPF `TXT` + MX on the `send` subdomain (targets under `rmta.net`)
+   and the DKIM key at `resend._domainkey.getbrandlux.com`, so it does not clash with the inbox MX
+   records from step A. — **done 2026-10-08, domain shows `verified`.**
 2. Generate one long random string. It is used twice and must match in both places:
    `npx supabase secrets set WEBHOOK_SECRET=<that-string> RESEND_API_KEY=<key> MAIL_FROM="BrandLux <hello@getbrandlux.com>"`
    (or Dashboard → Edge Functions → Secrets). Replace `REPLACE_WEBHOOK_SECRET` in
