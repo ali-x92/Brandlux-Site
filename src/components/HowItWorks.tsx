@@ -55,9 +55,7 @@ export function HowItWorks() {
                       {s.n}
                     </span>
                     <h3 className="text-xl font-semibold">{s.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                      {s.desc}
-                    </p>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
                   </div>
                 </Tilt>
               </Reveal>

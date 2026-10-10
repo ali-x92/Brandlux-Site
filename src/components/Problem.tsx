@@ -35,8 +35,8 @@ export function Problem() {
                 <span className="text-gradient">None of it matches.</span>
               </h2>
               <p className="mt-4 text-muted-foreground">
-                Business owners assemble a brand from separate vendors and tools — and it
-                never quite lines up. BrandLux replaces the pile with one workspace.
+                Business owners assemble a brand from separate vendors and tools — and it never
+                quite lines up. BrandLux replaces the pile with one workspace.
               </p>
             </div>
           </Reveal>
@@ -77,18 +77,16 @@ export function Problem() {
                     One workspace. <span className="text-gradient">One brand kit.</span>
                   </h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    Every tool reads from the same brand kit — so a business card always
-                    matches the website, and the posts match both.
+                    Every tool reads from the same brand kit — so a business card always matches the
+                    website, and the posts match both.
                   </p>
                   <ul className="mt-5 grid grid-cols-2 gap-2 text-xs text-muted-foreground">
-                    {["Shared logo", "Shared palette", "Shared type", "Shared voice"].map(
-                      (t) => (
-                        <li key={t} className="flex items-center gap-2">
-                          <span className="h-1.5 w-1.5 rounded-full bg-gradient-brand" />
-                          {t}
-                        </li>
-                      ),
-                    )}
+                    {["Shared logo", "Shared palette", "Shared type", "Shared voice"].map((t) => (
+                      <li key={t} className="flex items-center gap-2">
+                        <span className="h-1.5 w-1.5 rounded-full bg-gradient-brand" />
+                        {t}
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </Tilt>

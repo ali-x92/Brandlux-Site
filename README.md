@@ -1,6 +1,7 @@
 # BrandLux
 
-Pre-launch marketing site for **BrandLux** — an AI tool that turns one idea into a complete brand: website, logo and ready-to-post creatives for Instagram, Facebook, X, WhatsApp and more.
+Pre-launch marketing site for **BrandLux** — an AI brand studio that turns one idea into a complete
+brand: logo, website, print, packaging, social content and marketing copy, all drawn from one brand kit.
 
 The site collects early-access wishlist signups and contact messages, stores them in Supabase, and
 emails the submitter an auto-reply plus a notification to `hello@getbrandlux.com`.
@@ -8,7 +9,7 @@ emails the submitter an auto-reply plus a notification to `hello@getbrandlux.com
 ## Stack
 
 - React 19 + TanStack Start (SSR) + Vite 7, deployed to Netlify (nitro `netlify` preset)
-- Tailwind CSS v4 + shadcn/ui components
+- Tailwind CSS v4 + the shadcn/ui primitives the site actually uses (accordion, toaster)
 - Supabase (Postgres) for `wishlist_signups` and `contact_messages`
 
 ## Development
@@ -42,7 +43,14 @@ picks up automatically, plus `_headers`/`_redirects` inside `dist`.
    - `VITE_SUPABASE_PROJECT_ID`
    - `VITE_SUPABASE_PUBLISHABLE_KEY`
 3. Apply the migrations in `supabase/migrations/` to your Supabase project.
-4. Add `getbrandlux.com` as a custom domain in Netlify and point DNS at it.
+4. Add `getbrandlux.com` as a custom domain in Netlify, then point DNS at it:
+   - Apex `A` record → `75.2.60.5` **only**. Any extra apex A record (a registrar parking or
+     forwarding IP, for example) silently steals traffic: visitors and Googlebot then get a parking
+     page that 404s `/robots.txt`, `/sitemap.xml` and the Search Console file.
+   - `www` → `CNAME` to `<site>.netlify.app`.
+   - Turn on the HTTPS certificate in Netlify (**Domain management → HTTPS**) and wait for it to
+     issue. Until then the edge serves `*.netlify.app`, every visit to `https://getbrandlux.com`
+     fails hostname verification, and Google cannot crawl or index a single page.
 
 ## Email: receiving, and the auto-replies
 

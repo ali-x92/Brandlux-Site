@@ -64,13 +64,16 @@ export function WishlistForm({
   if (done) {
     return (
       <div
+        role="status"
         className={cn(
           "glass flex items-center gap-3 rounded-2xl px-5 py-4 text-sm font-medium",
           className,
         )}
       >
         <CheckCircle2 className="h-5 w-5 text-secondary" />
-        <span>Thanks! We've added <strong>{email}</strong> to the wishlist.</span>
+        <span>
+          Thanks! We've added <strong>{email}</strong> to the wishlist.
+        </span>
       </div>
     );
   }

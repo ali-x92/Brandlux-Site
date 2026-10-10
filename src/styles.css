@@ -72,24 +72,12 @@
   --ring: #833af0;
 
   /* Signature 120° gradient: purple → pink → magenta → orange */
-  --gradient-brand: linear-gradient(
-    120deg,
-    #833af0 0%,
-    #dd47d6 35%,
-    #ec009c 65%,
-    #ff7527 100%
-  );
+  --gradient-brand: linear-gradient(120deg, #833af0 0%, #dd47d6 35%, #ec009c 65%, #ff7527 100%);
 
-  --gradient-soft: linear-gradient(
-    180deg,
-    #fffbf3 0%,
-    #f6edf6 100%
-  );
+  --gradient-soft: linear-gradient(180deg, #fffbf3 0%, #f6edf6 100%);
 
-  --shadow-glass: 0 10px 40px -10px rgb(76 35 133 / 20%),
-    0 2px 6px -2px rgb(76 35 133 / 12%);
+  --shadow-glass: 0 10px 40px -10px rgb(76 35 133 / 20%), 0 2px 6px -2px rgb(76 35 133 / 12%);
   --shadow-glow: 0 20px 60px -20px rgb(221 71 214 / 40%);
-
 
   --glass-bg: rgb(255 255 255 / 55%);
   --glass-border: rgb(255 255 255 / 60%);
@@ -159,22 +147,42 @@
   }
 
   @keyframes float-slow {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(20px, -30px) scale(1.05); }
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(20px, -30px) scale(1.05);
+    }
   }
-  .animate-float-slow { animation: float-slow 14s ease-in-out infinite; }
+  .animate-float-slow {
+    animation: float-slow 14s ease-in-out infinite;
+  }
 
   @keyframes float-slower {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(-30px, 20px) scale(1.08); }
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(-30px, 20px) scale(1.08);
+    }
   }
-  .animate-float-slower { animation: float-slower 18s ease-in-out infinite; }
+  .animate-float-slower {
+    animation: float-slower 18s ease-in-out infinite;
+  }
 
   @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
   }
-  .animate-marquee { animation: marquee 28s linear infinite; }
+  .animate-marquee {
+    animation: marquee 28s linear infinite;
+  }
 
   /* Card lift + glow on hover */
   .card-lift {
@@ -214,7 +222,9 @@
 
   /* Icon badge pop on group hover */
   .icon-badge {
-    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+    transition:
+      transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+      box-shadow 0.35s ease;
   }
   .group:hover .icon-badge {
     transform: scale(1.12) rotate(-6deg);
@@ -223,8 +233,12 @@
 
   /* Shimmering gradient text */
   @keyframes shimmer {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 200% 50%; }
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 200% 50%;
+    }
   }
   .text-shimmer {
     background: linear-gradient(
@@ -244,10 +258,17 @@
 
   /* Soft pulsing glow */
   @keyframes pulse-glow {
-    0%, 100% { box-shadow: 0 0 0 0 rgb(255 117 39 / 35%); }
-    50% { box-shadow: 0 0 0 8px rgb(255 117 39 / 0%); }
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 rgb(255 117 39 / 35%);
+    }
+    50% {
+      box-shadow: 0 0 0 8px rgb(255 117 39 / 0%);
+    }
   }
-  .animate-pulse-glow { animation: pulse-glow 2.6s ease-in-out infinite; }
+  .animate-pulse-glow {
+    animation: pulse-glow 2.6s ease-in-out infinite;
+  }
 
   /* 3D perspective wrappers */
   .perspective {
@@ -290,17 +311,27 @@
 
   /* Loose drifting cards (scattered-tools visual) */
   @keyframes drift {
-    0%, 100% { transform: translate3d(0, 0, 0) rotate(-0.6deg); }
-    50% { transform: translate3d(4px, -6px, 0) rotate(0.8deg); }
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) rotate(-0.6deg);
+    }
+    50% {
+      transform: translate3d(4px, -6px, 0) rotate(0.8deg);
+    }
   }
-  .animate-drift { animation: drift 7s ease-in-out infinite; }
+  .animate-drift {
+    animation: drift 7s ease-in-out infinite;
+  }
 
   /* Slow spin for decorative rings */
   @keyframes spin-slow {
-    to { transform: rotate(360deg); }
+    to {
+      transform: rotate(360deg);
+    }
   }
-  .animate-spin-slow { animation: spin-slow 22s linear infinite; }
-
+  .animate-spin-slow {
+    animation: spin-slow 22s linear infinite;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

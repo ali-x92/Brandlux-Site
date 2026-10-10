@@ -21,8 +21,7 @@ const itemClass = (active: boolean) =>
       : "text-muted-foreground hover:bg-muted/70 hover:text-foreground",
   );
 
-const mobileItemClass =
-  "rounded-2xl px-4 py-3 text-sm text-foreground/80 hover:bg-muted";
+const mobileItemClass = "rounded-2xl px-4 py-3 text-sm text-foreground/80 hover:bg-muted";
 
 export function Nav() {
   const [open, setOpen] = useState(false);
@@ -76,11 +75,7 @@ export function Nav() {
               Tools
             </Link>
             {sectionLinks.map((l) => (
-              <a
-                key={l.href}
-                href={isHome ? l.href : `/${l.href}`}
-                className={itemClass(false)}
-              >
+              <a key={l.href} href={isHome ? l.href : `/${l.href}`} className={itemClass(false)}>
                 {l.label}
               </a>
             ))}
@@ -111,11 +106,7 @@ export function Nav() {
       {open && (
         <div id="mobile-menu" className="mx-auto mt-2 max-w-6xl px-4 lg:hidden">
           <div className="glass flex flex-col gap-1 rounded-3xl p-3">
-            <Link
-              to="/tools"
-              onClick={() => setOpen(false)}
-              className={mobileItemClass}
-            >
+            <Link to="/tools" onClick={() => setOpen(false)} className={mobileItemClass}>
               Tools
             </Link>
             {sectionLinks.map((l) => (

@@ -31,17 +31,15 @@ export function About() {
                 About
               </span>
               <h2 className="mt-3 text-3xl font-bold sm:text-5xl">
-                Branding shouldn't take{" "}
-                <span className="text-gradient">four vendors</span>.
+                Branding shouldn't take <span className="text-gradient">four vendors</span>.
               </h2>
               <p className="mt-5 text-muted-foreground">
-                Building a brand used to mean a designer, a web agency, a copywriter
-                and a printer — four timelines, four invoices, and a result that never
-                quite matched.
+                Building a brand used to mean a designer, a web agency, a copywriter and a printer —
+                four timelines, four invoices, and a result that never quite matched.
               </p>
               <p className="mt-3 text-muted-foreground">
-                BrandLux replaces the pile with one workspace: a brand kit every tool
-                reads from, so your brand looks like one brand — everywhere.
+                BrandLux replaces the pile with one workspace: a brand kit every tool reads from, so
+                your brand looks like one brand — everywhere.
               </p>
             </div>
           </Reveal>
@@ -63,7 +61,6 @@ export function About() {
               </Reveal>
             ))}
           </div>
-
         </div>
       </div>
     </section>

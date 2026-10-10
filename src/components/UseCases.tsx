@@ -1,13 +1,7 @@
 import { useEffect, useState } from "react";
 import { Reveal } from "@/components/Reveal";
 import { Parallax } from "@/components/Parallax";
-import {
-  ChevronLeft,
-  ChevronRight,
-  Store,
-  Sparkles,
-  Briefcase,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight, Store, Sparkles, Briefcase } from "lucide-react";
 
 const slides = [
   {
@@ -39,6 +33,7 @@ export function UseCases() {
 
   useEffect(() => {
     if (paused) return;
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
     const t = setInterval(() => setI((p) => (p + 1) % slides.length), 5000);
     return () => clearInterval(t);
   }, [paused]);
@@ -55,8 +50,7 @@ export function UseCases() {
                 Who it's for
               </span>
               <h2 className="mt-3 text-3xl font-bold sm:text-5xl">
-                From first logo to{" "}
-                <span className="text-gradient">full agency roster</span>.
+                From first logo to <span className="text-gradient">full agency roster</span>.
               </h2>
               <p className="mt-4 text-muted-foreground">
                 However your brand grows, the workspace grows with it.
@@ -70,6 +64,8 @@ export function UseCases() {
             className="perspective relative mt-14"
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
+            onFocus={() => setPaused(true)}
+            onBlur={() => setPaused(false)}
           >
             <div className="overflow-hidden rounded-3xl">
               <div
@@ -87,9 +83,7 @@ export function UseCases() {
                           <span className="text-xs font-semibold uppercase tracking-widest text-secondary">
                             {s.tag}
                           </span>
-                          <h3 className="mt-2 text-2xl font-bold sm:text-3xl">
-                            {s.title}
-                          </h3>
+                          <h3 className="mt-2 text-2xl font-bold sm:text-3xl">{s.title}</h3>
                           <p className="mt-3 max-w-xl text-sm text-muted-foreground sm:text-base">
                             {s.desc}
                           </p>

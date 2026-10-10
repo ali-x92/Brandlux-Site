@@ -39,8 +39,8 @@ export function Workspace() {
                 Every brand in <span className="text-gradient">its own project</span>.
               </h2>
               <p className="mt-4 text-muted-foreground">
-                Projects keep brands separate, while every tool reads from the same brand kit —
-                so a business card always matches the website.
+                Projects keep brands separate, while every tool reads from the same brand kit — so a
+                business card always matches the website.
               </p>
             </div>
           </Reveal>

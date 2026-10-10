@@ -39,9 +39,7 @@ export function LegalSection({ title, children }: { title: string; children: Rea
   return (
     <section>
       <h2 className="text-lg font-semibold text-foreground">{title}</h2>
-      <div className="mt-3 space-y-3 text-sm leading-relaxed text-muted-foreground">
-        {children}
-      </div>
+      <div className="mt-3 space-y-3 text-sm leading-relaxed text-muted-foreground">{children}</div>
     </section>
   );
 }

@@ -23,10 +23,7 @@ export function Platforms() {
           <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-gradient-to-l from-background to-transparent" />
           <div className="flex w-max animate-marquee gap-10">
             {items.map((it, i) => (
-              <div
-                key={i}
-                className="flex items-center gap-2 text-foreground/60"
-              >
+              <div key={i} className="flex items-center gap-2 text-foreground/60">
                 <it.Icon className="h-5 w-5" />
                 <span className="text-sm font-medium">{it.label}</span>
               </div>

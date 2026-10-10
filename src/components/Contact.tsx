@@ -68,8 +68,8 @@ export function Contact() {
               Got a question? <span className="text-gradient">Say hi</span>.
             </h2>
             <p className="mt-4 text-muted-foreground">
-              Partnerships, press, feedback or just curious — drop us a line and we'll
-              reply within a day.
+              Partnerships, press, feedback or just curious — drop us a line and we'll reply within
+              a day.
             </p>
           </div>
         </Reveal>
@@ -81,7 +81,10 @@ export function Contact() {
             <div className="pointer-events-none absolute -bottom-16 -right-16 h-48 w-48 rounded-full bg-secondary/20 blur-3xl" />
 
             {done ? (
-              <div className="relative flex flex-col items-center gap-3 py-12 text-center">
+              <div
+                role="status"
+                className="relative flex flex-col items-center gap-3 py-12 text-center"
+              >
                 <CheckCircle2 className="h-12 w-12 text-secondary" />
                 <h3 className="text-xl font-semibold">Message sent</h3>
                 <p className="text-sm text-muted-foreground">
@@ -136,7 +139,10 @@ export function Contact() {
                 <div className="space-y-4 md:col-span-3">
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div>
-                      <label htmlFor="contact-name" className="text-xs font-medium text-muted-foreground">
+                      <label
+                        htmlFor="contact-name"
+                        className="text-xs font-medium text-muted-foreground"
+                      >
                         Your name
                       </label>
                       <input
@@ -152,7 +158,10 @@ export function Contact() {
                       />
                     </div>
                     <div>
-                      <label htmlFor="contact-email" className="text-xs font-medium text-muted-foreground">
+                      <label
+                        htmlFor="contact-email"
+                        className="text-xs font-medium text-muted-foreground"
+                      >
                         Email
                       </label>
                       <input
@@ -170,7 +179,10 @@ export function Contact() {
                     </div>
                   </div>
                   <div>
-                    <label htmlFor="contact-message" className="text-xs font-medium text-muted-foreground">
+                    <label
+                      htmlFor="contact-message"
+                      className="text-xs font-medium text-muted-foreground"
+                    >
                       Message
                     </label>
                     <textarea

@@ -1,5 +1,6 @@
 import { Reveal } from "@/components/Reveal";
 import { Parallax, Tilt } from "@/components/Parallax";
+import { toolCount } from "@/lib/tools";
 import { Wand2, MessagesSquare, BookOpen, KeyRound, Sparkles } from "lucide-react";
 
 const cells = [
@@ -24,7 +25,7 @@ const cells = [
   {
     icon: KeyRound,
     title: "No API keys. Ever.",
-    desc: "All 16 AI tools included. You never configure or pay a model provider — credits cover it.",
+    desc: `All ${toolCount} AI tools included. You never configure or pay a model provider — credits cover it.`,
     span: "sm:col-span-2",
   },
 ];
@@ -43,8 +44,8 @@ export function Bento() {
                 One workspace. <span className="text-gradient">Every asset.</span>
               </h2>
               <p className="mt-4 text-muted-foreground">
-                Logo, website, print, packaging, social and copy — generated from the
-                same brand kit, so they all belong together.
+                Logo, website, print, packaging, social and copy — generated from the same brand
+                kit, so they all belong together.
               </p>
             </div>
           </Reveal>
@@ -59,9 +60,7 @@ export function Bento() {
                     <c.icon className="h-6 w-6" strokeWidth={2.1} />
                   </div>
                   <h3 className="mt-5 text-lg font-semibold">{c.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {c.desc}
-                  </p>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.desc}</p>
                   <Sparkles className="pointer-events-none absolute -right-2 -top-2 h-16 w-16 text-primary/10" />
                 </div>
               </Tilt>

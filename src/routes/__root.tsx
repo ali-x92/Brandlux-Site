@@ -36,17 +36,24 @@ export const Route = createRootRoute({
         { name: "viewport", content: "width=device-width, initial-scale=1" },
         { name: "theme-color", content: "#fffbf3" },
         { title: "BrandLux — Your Brand, Radiant." },
-        { name: "description", content: "BrandLux is an AI brand studio: one workspace for your logo, website, print, packaging, social content and marketing copy. Join the wishlist for early access." },
+        {
+          name: "description",
+          content:
+            "BrandLux is an AI brand studio: one workspace for your logo, website, print, packaging, social content and marketing copy. Join the wishlist for early access.",
+        },
         { name: "author", content: "BrandLux" },
         { property: "og:title", content: "BrandLux — Your Brand, Radiant." },
-        { property: "og:description", content: "One workspace. A complete, consistent brand identity. Join the BrandLux wishlist for early access." },
+        {
+          property: "og:description",
+          content:
+            "One workspace. A complete, consistent brand identity. Join the BrandLux wishlist for early access.",
+        },
         { property: "og:type", content: "website" },
         { property: "og:url", content: canonical },
         { property: "og:image", content: `${SITE_URL}/og-image.png` },
         { property: "og:image:width", content: "1200" },
         { property: "og:image:height", content: "630" },
         { name: "twitter:card", content: "summary_large_image" },
-        { name: "twitter:site", content: "@BrandLux" },
       ],
       links: [
         { rel: "stylesheet", href: appCss },

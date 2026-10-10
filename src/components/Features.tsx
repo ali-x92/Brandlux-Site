@@ -19,8 +19,8 @@ export function Features() {
                 One idea in. <span className="text-gradient">A whole brand out.</span>
               </h2>
               <p className="mt-4 text-muted-foreground">
-                Three stages, sixteen tools — all reading from the same brand kit, so
-                everything you make looks like you.
+                {toolGroups.length} stages, {toolCount} tools — all reading from the same brand kit,
+                so everything you make looks like you.
               </p>
             </div>
           </Reveal>

@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/Reveal";
+import { toolCount } from "@/lib/tools";
 import { Check, Folder, Zap, Users, Sparkles } from "lucide-react";
 
 type Tier = {
@@ -23,7 +24,7 @@ const tiers: Tier[] = [
     ],
     features: [
       "Complete brand kit generation",
-      "All 16 AI tools available",
+      `All ${toolCount} AI tools available`,
       "Google & Facebook sign-in",
     ],
     highlighted: false,
@@ -38,11 +39,7 @@ const tiers: Tier[] = [
       { icon: Zap, label: "250 credits / month" },
       { icon: Users, label: "5 seats" },
     ],
-    features: [
-      "Everything in Free",
-      "Room for multiple brands",
-      "Seats for your team",
-    ],
+    features: ["Everything in Free", "Room for multiple brands", "Seats for your team"],
     highlighted: true,
   },
   {
@@ -55,11 +52,7 @@ const tiers: Tier[] = [
       { icon: Zap, label: "1,000 credits / month" },
       { icon: Users, label: "10 seats" },
     ],
-    features: [
-      "Everything in Pro",
-      "A full client roster",
-      "Bigger team, bigger output",
-    ],
+    features: ["Everything in Pro", "A full client roster", "Bigger team, bigger output"],
     highlighted: false,
   },
 ];
@@ -77,7 +70,8 @@ export function Pricing() {
               Simple. <span className="text-gradient">Transparent</span>.
             </h2>
             <p className="mt-4 text-muted-foreground">
-              Start free, upgrade as you grow. Wishlist members get launch-day discounts and free credits.
+              Start free, upgrade as you grow. Wishlist members get launch-day discounts and free
+              credits.
             </p>
           </div>
         </Reveal>
@@ -87,9 +81,7 @@ export function Pricing() {
             <Reveal key={t.name} delay={i * 100}>
               <div
                 className={`glass card-lift gradient-ring group relative h-full rounded-2xl p-7 ${
-                  t.highlighted
-                    ? "ring-2 ring-primary/60 shadow-[var(--shadow-glow)]"
-                    : ""
+                  t.highlighted ? "ring-2 ring-primary/60 shadow-[var(--shadow-glow)]" : ""
                 }`}
               >
                 {t.highlighted && (
@@ -99,12 +91,8 @@ export function Pricing() {
                 )}
                 <h3 className="text-lg font-semibold">{t.name}</h3>
                 <div className="mt-3 flex items-baseline gap-1">
-                  <span className="font-display text-4xl font-bold text-gradient">
-                    {t.price}
-                  </span>
-                  {t.period && (
-                    <span className="text-sm text-muted-foreground">{t.period}</span>
-                  )}
+                  <span className="font-display text-4xl font-bold text-gradient">{t.price}</span>
+                  {t.period && <span className="text-sm text-muted-foreground">{t.period}</span>}
                 </div>
                 <p className="mt-2 text-sm text-muted-foreground">{t.desc}</p>
 
@@ -146,10 +134,10 @@ export function Pricing() {
               <Sparkles className="h-5 w-5" strokeWidth={2.1} />
             </div>
             <p className="text-sm text-muted-foreground">
-              <span className="font-semibold text-foreground">How credits work.</span>{" "}
-              Every AI action costs credits — from 1 for palettes and copy to 10 for packaging
-              and mockups. Credits reset each billing period and don't roll over. You never
-              manage AI keys, and billing runs on Paddle.
+              <span className="font-semibold text-foreground">How credits work.</span> Every AI
+              action costs credits — from 1 for palettes and copy to 10 for packaging and mockups.
+              Credits reset each billing period and don't roll over. You never manage AI keys, and
+              billing runs on Paddle.
             </p>
           </div>
         </Reveal>

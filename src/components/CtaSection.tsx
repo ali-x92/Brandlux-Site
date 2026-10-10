@@ -14,8 +14,8 @@ export function CtaSection() {
               Your brand, <span className="text-gradient">radiant</span>.
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-              Join the wishlist for early access and free credits at launch — and be
-              first to build your brand kit.
+              Join the wishlist for early access and free credits at launch — and be first to build
+              your brand kit.
             </p>
             <div className="mx-auto mt-8 max-w-lg">
               <WishlistForm size="lg" source="cta" />

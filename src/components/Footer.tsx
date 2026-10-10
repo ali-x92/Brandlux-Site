@@ -38,8 +38,8 @@ export function Footer() {
             <div className="max-w-sm">
               <BrandWordmark />
               <p className="mt-4 text-sm text-muted-foreground">
-                An AI brand studio: one workspace for your logo, website, print,
-                packaging, social content and marketing copy.
+                An AI brand studio: one workspace for your logo, website, print, packaging, social
+                content and marketing copy.
               </p>
               <p className="mt-5 text-sm text-muted-foreground">
                 Questions?{" "}
@@ -63,10 +63,7 @@ export function Footer() {
                           {l.label}
                         </Link>
                       ) : (
-                        <a
-                          href={isHome ? l.href : `/${l.href}`}
-                          className={linkClass}
-                        >
+                        <a href={isHome ? l.href : `/${l.href}`} className={linkClass}>
                           {l.label}
                         </a>
                       )}

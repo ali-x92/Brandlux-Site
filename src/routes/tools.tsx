@@ -6,7 +6,7 @@ import { Footer } from "@/components/Footer";
 import { CtaSection } from "@/components/CtaSection";
 import { Reveal } from "@/components/Reveal";
 import { Toaster } from "@/components/ui/sonner";
-import { toolGroups } from "@/lib/tools";
+import { toolCount, toolGroups } from "@/lib/tools";
 
 export const Route = createFileRoute("/tools")({
   component: ToolsPage,
@@ -16,13 +16,12 @@ export const Route = createFileRoute("/tools")({
       {
         name: "description",
         content:
-          "Every BrandLux tool in one place: logo maker, palettes, typography, brand guidelines, website builder, business cards, menu cards, packaging, mockups, email signatures, QR codes, post maker, captions, marketing copy, auto-post and AI chat.",
+          "Every BrandLux tool in one place: logo maker, palettes, typography, brand guidelines, website builder, business cards, menu cards, packaging, mockups, email signatures, QR codes, invoices and stationery, post maker, captions, marketing copy, social profile kit, auto-post and AI chat.",
       },
       { property: "og:title", content: "Tools — BrandLux" },
       {
         property: "og:description",
-        content:
-          "Sixteen AI tools, one brand kit. See what every BrandLux tool does — and how they stay on-brand together.",
+        content: `${toolCount} AI tools, one brand kit. See what every BrandLux tool does — and how they stay on-brand together.`,
       },
     ],
   }),
@@ -58,12 +57,12 @@ function ToolsPage() {
                 Tools
               </span>
               <h1 className="mt-3 text-4xl font-bold sm:text-6xl">
-                Sixteen tools. <span className="text-gradient">One brand.</span>
+                {toolCount} tools. <span className="text-gradient">One brand.</span>
               </h1>
               <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-                Every BrandLux tool reads from the same brand kit — your colors, fonts, logo
-                and tone of voice. Build the identity once, and everything you make comes
-                out looking like you.
+                Every BrandLux tool reads from the same brand kit — your colors, fonts, logo and
+                tone of voice. Build the identity once, and everything you make comes out looking
+                like you.
               </p>
               <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
                 <Link

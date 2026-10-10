@@ -1,12 +1,13 @@
 import { Reveal } from "@/components/Reveal";
 import { Tilt } from "@/components/Parallax";
+import { toolCount } from "@/lib/tools";
 import { Layers3, Folder, KeyRound, Globe } from "lucide-react";
 
 const stats = [
-  { icon: Layers3, value: "16", label: "AI tools, one workspace" },
+  { icon: Layers3, value: String(toolCount), label: "AI tools, one workspace" },
   { icon: Folder, value: "1", label: "Brand kit behind them all" },
   { icon: KeyRound, value: "0", label: "API keys to manage" },
-  { icon: Globe, value: "4", label: "Social platforms covered" },
+  { icon: Globe, value: "5", label: "Social platforms covered" },
 ];
 
 export function Stats() {

@@ -13,6 +13,8 @@ import {
   Instagram,
   Hash,
   FileText,
+  FileSpreadsheet,
+  UserRound,
   Send,
   Bot,
   type LucideIcon,
@@ -111,6 +113,12 @@ export const toolGroups: ToolGroup[] = [
         icon: QrCode,
         desc: "Branded QR codes for menus, links and packaging.",
       },
+      {
+        slug: "invoice-stationery",
+        title: "Invoice & Stationery",
+        icon: FileSpreadsheet,
+        desc: "Print-ready A4 invoices and letterheads in your palette, fonts and contact block.",
+      },
     ],
   },
   {
@@ -122,7 +130,7 @@ export const toolGroups: ToolGroup[] = [
         slug: "post-maker",
         title: "Post Maker",
         icon: Instagram,
-        desc: "Feed posts, stories and covers for 4 platforms — perfectly sized.",
+        desc: "Feed posts, stories and covers, sized correctly for each platform.",
       },
       {
         slug: "captions-tags",
@@ -135,6 +143,12 @@ export const toolGroups: ToolGroup[] = [
         title: "Marketing Copy",
         icon: FileText,
         desc: "Headlines, launch emails and bios in your brand's voice.",
+      },
+      {
+        slug: "social-profile-kit",
+        title: "Social Profile Kit",
+        icon: UserRound,
+        desc: "Correctly-sized avatars and cover images for every platform, drawn from your kit.",
       },
       {
         slug: "auto-post",

@@ -12,7 +12,6 @@ export function Hero() {
         <div className="absolute left-1/2 top-72 h-72 w-72 -translate-x-1/2 rounded-full bg-accent/25 blur-3xl" />
       </div>
 
-
       <div className="mx-auto max-w-6xl px-4 pb-16 pt-20 sm:pt-28 md:pb-20 md:pt-32">
         <Reveal>
           <div className="flex justify-center">
@@ -23,7 +22,6 @@ export function Hero() {
           </div>
         </Reveal>
 
-
         <Reveal delay={120}>
           <h1 className="mx-auto mt-6 max-w-3xl text-center text-4xl font-bold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl">
             Your brand, <span className="text-shimmer">radiant.</span>
@@ -32,9 +30,9 @@ export function Hero() {
 
         <Reveal delay={220}>
           <p className="mx-auto mt-6 max-w-2xl text-center text-base text-muted-foreground sm:text-lg">
-            BrandLux is an AI brand studio. Answer a few questions about your business
-            and get a complete identity — logo, website, print, packaging, social content
-            and copy — consistent everywhere, from one workspace.
+            BrandLux is an AI brand studio. Answer a few questions about your business and get a
+            complete identity — logo, website, print, packaging, social content and copy —
+            consistent everywhere, from one workspace.
           </p>
         </Reveal>
 

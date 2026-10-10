@@ -6,7 +6,10 @@ export function BrandMark({ className }: { className?: string }) {
     <img
       src={markSrc}
       alt="BrandLux mark"
-      className={cn("h-9 w-9 object-contain drop-shadow-[0_6px_18px_oklch(0.6_0.2_320/35%)]", className)}
+      className={cn(
+        "h-9 w-9 object-contain drop-shadow-[0_6px_18px_oklch(0.6_0.2_320/35%)]",
+        className,
+      )}
     />
   );
 }
